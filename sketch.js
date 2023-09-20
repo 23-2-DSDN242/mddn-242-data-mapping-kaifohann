@@ -3,9 +3,9 @@ let maskImg=null;
 let renderCounter=0;
 
 // change these three lines as appropiate
-let sourceFile = "input_4.jpg";
-let maskFile   = "mask_4.png";
-let outputFile = "output_4.png";
+let sourceFile = "input_1.jpg";
+let maskFile   = "mask_1.png";
+let outputFile = "output_1.png";
 
 function preload() {
   sourceImg = loadImage(sourceFile);
@@ -24,13 +24,13 @@ function setup () {
 }
 
 function draw () {
-  for(let i=0;i<4000;i++) {
+  for(let i=0;i<4000;i++) { //determines how many circles/rects are drawh
     let x = floor(random(sourceImg.width));
     let y = floor(random(sourceImg.height));
     let pix = sourceImg.get(x, y);
     let mask = maskImg.get(x, y);
     fill(pix);
-    if(mask[0] > 128) {
+    if(mask[0] > 128) { //halfway pt between 0 and 255 (white to black scale)
       let pointSize = 10;
       ellipse(x, y, pointSize, pointSize);
     }
@@ -44,9 +44,11 @@ function draw () {
     console.log("Done!")
     noLoop();
     // uncomment this to save the result
-    // saveArtworkImage(outputFile);
+    //saveArtworkImage(outputFile);
   }
 }
+
+//yoohooo
 
 function keyTyped() {
   if (key == '!') {
