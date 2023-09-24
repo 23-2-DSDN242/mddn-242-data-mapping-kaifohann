@@ -3,8 +3,8 @@ let maskImg=null;
 let renderCounter=0;
 
 // change these three lines as appropiate
-let sourceFile = "input_1.jpg";
-let maskFile   = "mask_1.png";
+let sourceFile = "input_test.jpg";
+let maskFile   = "mask_test.png";
 let outputFile = "output_1.png";
 
 function preload() {
@@ -31,7 +31,7 @@ function draw () {
     let mask = maskImg.get(x, y);
     fill(pix);
     if(mask[0] > 128) { //halfway pt between 0 and 255 (white to black scale)
-      let pointSize = 10;
+      let pointSize = 0;
       ellipse(x, y, pointSize, pointSize);
     }
     else {
