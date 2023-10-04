@@ -3,8 +3,8 @@ let maskImg=null;
 let renderCounter=0;
 
 // change these three lines as appropiate
-let sourceFile = "inputtest_2.jpg";
-let maskFile   = "masktest_2.png";
+let sourceFile = "input_1.jpg";
+let maskFile   = "mask_1.png";
 let outputFile = "output_1.png";
 
 function preload() {
@@ -18,27 +18,37 @@ function setup () {
 
   imageMode(CENTER);
   noStroke();
-  background(255, 255, 255);
+  background('#531f16');
   sourceImg.loadPixels();
   maskImg.loadPixels();
 }
 
 function draw () {
-  for(let i=0;i<40000;i++) { //determines how many circles/rects are drawh
+
+  for(let i=0;i<11000;i++) { //determines how many circles/rects are drawh
     let x = floor(random(sourceImg.width));
     let y = floor(random(sourceImg.height));
     let pix = sourceImg.get(x, y);
     let mask = maskImg.get(x, y);
-    fill(pix);
+    
+
+    
+    
+    //fill(pix);
     noStroke();
     if(mask[0] > 128) { //halfway pt between 0 and 255 (white to black scale)
-      stroke(pix);
-      let pointSize = 4;
+      //stroke(pix);
+    pix[3] = 200;
+    fill(pix);
+      let pointSize = 7;
       ellipse(x, y, pointSize, pointSize);   
+      //drawPill(x,y,pix);
     }
     else {
+      
       //for(let i=0; i <20; i++) {
-        drawPill(x,y, pix) //https://openprocessing.org/sketch/708075
+        drawPill(x,y, pix); //https://openprocessing.org/sketch/708075
+   
       //}
       //fill(pix[0]);
       //stroke(pix[0]);
@@ -55,14 +65,15 @@ function draw () {
   //edit hue to dark blue, rotoscop windows and make them glow
 
   function drawPill(x,y, pix) {
-    let color = pix;
-    let lum = red(color) + green(color) + blue(color);
-    let angle = lum /255 * PI + ((x/width)* PI);
-    angle /= 2;
+    
+    pix[3] =50; //change pix alpha value
+    let col = color(pix);
+    //let color = pix;
+    let angle = 70;
     angle += noise(x/100, y/100) * PI;
-    fill(color);
+    fill(col);
     pill(x,y, random(height/40, width/200), random(height/40, width/200), angle);
-
+    
   }
 
   function pill(x,y, width, height, rotation) {
