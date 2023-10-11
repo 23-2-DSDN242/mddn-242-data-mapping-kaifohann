@@ -3,8 +3,8 @@ let maskImg=null;
 let renderCounter=0;
 
 // change these three lines as appropiate
-let sourceFile = "input_1.jpg";
-let maskFile   = "mask_1.png";
+let sourceFile = "input_2.jpg";
+let maskFile   = "mask_2.png";
 let outputFile = "output_1.png";
 
 function preload() {
@@ -15,51 +15,40 @@ function preload() {
 function setup () {
   let main_canvas = createCanvas(1920, 1080);
   main_canvas.parent('canvasContainer');
+  
 
   imageMode(CENTER);
   noStroke();
-  background('#531f16');
+  background('#F0EAD6');
   sourceImg.loadPixels();
   maskImg.loadPixels();
+  //fill('#ADD8E6');
+  //rect(0,0, 1920, 500);
 }
 
 function draw () {
 
-  for(let i=0;i<11000;i++) { //determines how many circles/rects are drawh
+  
+
+  for(let i=0;i<11000;i++) { //determines how many elements are drawn
     let x = floor(random(sourceImg.width));
     let y = floor(random(sourceImg.height));
     let pix = sourceImg.get(x, y);
     let mask = maskImg.get(x, y);
+    let sizeArray = [0, 1, 2, 3, 4, 5, 6];
+    let rotateArray = [0,20,40, 90, 180, 270, 200, 125];
     
-
-    
-    
-    //fill(pix);
     noStroke();
     if(mask[0] > 128) { //halfway pt between 0 and 255 (white to black scale)
-      //stroke(pix);
-    pix[3] = 200;
-    fill(pix);
-      let pointSize = 7;
-      ellipse(x, y, pointSize, pointSize);   
-      //drawPill(x,y,pix);
-    }
-    else {
       
-      //for(let i=0; i <20; i++) {
-        drawPill(x,y, pix); //https://openprocessing.org/sketch/708075
-   
-      //}
-      //fill(pix[0]);
-      //stroke(pix[0]);
-      //let pointSize = 7;
-      //rect(x, y, pointSize, pointSize);   
-
-
-      //strokeWeight(1);
-      //ellipse(x, y, pointSize, pointSize); 
-      //line(x,y-50, x, y+50);
+      pix[3] = 200;
+      fill(pix);
+      let pointSize = 3;
       
+      rect(x, y, pointSize+random(sizeArray), pointSize+random(sizeArray)); //randomise size of rects (adding random number from sizeArray)
+      
+    } else {  
+        drawPill(x, y, pix); //https://openprocessing.org/sketch/708075  
     }
   }
   //edit hue to dark blue, rotoscop windows and make them glow
