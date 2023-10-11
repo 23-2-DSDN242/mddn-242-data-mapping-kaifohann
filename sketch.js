@@ -4,8 +4,8 @@ let renderCounter=0;
 let textureImg = null;
 
 // change these three lines as appropiate
-let sourceFile = "input_2.jpg";
-let maskFile   = "mask_2.png";
+let sourceFile = "input_new2.jpg";
+let maskFile   = "mask_new2.png";
 let outputFile = "output_1.png";
 
 function preload() {
@@ -24,19 +24,24 @@ function setup () {
   background('#F0EAD6');
   sourceImg.loadPixels();
   maskImg.loadPixels();
-  //fill('#ADD8E6');
-  //rect(0,0, 1920, 500);
+  textureImg.loadPixels();
+  
 }
 
+
+let X_STOP = 640;
+let Y_STOP = 480;
 function draw () {
+  let num_lines_to_draw = 40;
+  //get one scanline
+  for(let j=renderCounter; j<renderCounter+num_lines_to_draw && j<1080; j++) {
+    for(let i=0; i<X_STOP; i++) {
 
-  
-
-  for(let i=0;i<11000;i++) { //determines how many elements are drawn
+  //for(let i=0;i<15000;i++) { //determines how many elements are drawn
     let x = floor(random(sourceImg.width));
     let y = floor(random(sourceImg.height));
-    let pix = sourceImg.get(x, y);
-    let mask = maskImg.get(x, y);
+    let pix = sourceImg.get(i, j);
+    let mask = maskImg.get(i, j);
     let sizeArray = [0, 1, 2, 3, 4, 5, 6]; //size of squares
     let tex = textureImg.get(x,y);
 
@@ -49,19 +54,20 @@ function draw () {
       fill(pix);
       let pointSize = 3;
       
-      rect(x, y, pointSize+random(sizeArray), pointSize+random(sizeArray)); //randomise size of rects (adding random number from sizeArray)
+      rect(i, j, pointSize+random(sizeArray), pointSize+random(sizeArray)); //randomise size of rects (adding random number from sizeArray)
       
     } else {  
         
-        drawPill(x, y, pix); //https://openprocessing.org/sketch/708075  
+        drawPill(i, j, pix); //https://openprocessing.org/sketch/708075  
 
         let new_col = [0,0,0,255];
         for(let k=0; k<3; k++){
-          new_col[k] = map(0, 0, 100, pix[k], tex[k]);
+          new_col[k] = map(50, 0, 100, pix[k], tex[k]);
         }
-        set (x,y, new_col);
+        set (i,j, new_col);
     }
   }
+}
   //edit hue to dark blue, rotoscop windows and make them glow
 
   function drawPill(x,y, pix) {
