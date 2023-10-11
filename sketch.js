@@ -47,9 +47,7 @@ function draw () {
       
     } else {  
       //background paint stroke effect
-        
         drawPill(x, y, pix); 
-       
     }
   }
 
@@ -63,8 +61,8 @@ function draw () {
       let s = saturation(col);
       let b = brightness(col);
 
-      let new_sat = map(s, 0 , 100, 0, 30);
-      let new_col = color(h, new_sat, b)
+      let new_sat = map(s, 0 , 255, 0, 0);
+      let new_col = color(100, new_sat, b)
 
     //following code based on effect from https://openprocessing.org/sketch/708075  
     //simplified and adjusted to fit my code, using perlin noise and sin/cos waves 
