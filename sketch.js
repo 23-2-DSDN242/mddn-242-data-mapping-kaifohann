@@ -4,31 +4,28 @@ let renderCounter=0;
 let textureImg = null;
 
 // input/output file info
-let sourceFile = "input_1.jpg";
-let maskFile   = "mask_1.png";
-let outputFile = "output_3.png";
+let sourceFile = "input_new3.jpg";
+let maskFile   = "mask_new3.png";
+let outputFile = "output_6.png";
 
 function preload() {
   sourceImg = loadImage(sourceFile);
   maskImg = loadImage(maskFile);
 }
 
-function setup () {
+function setup() {
   let main_canvas = createCanvas(1920, 1080);
   main_canvas.parent('canvasContainer');
-  
 
   imageMode(CENTER);
   noStroke();
   background('#F0EAD6'); //eggshell
   sourceImg.loadPixels();
-  maskImg.loadPixels();
-  
-  
+  maskImg.loadPixels(); 
 }
 
+function draw() {
 
-function draw () {
   for(let i=0;i<15000;i++) { //determines how many elements are drawn
     let x = floor(random(sourceImg.width));
     let y = floor(random(sourceImg.height));
@@ -39,51 +36,49 @@ function draw () {
     
     noStroke();
     if(mask[0] > 128) { // pt between 0 and 255 (white to black scale)
-      //highlight buildings using random rectangle effect
-      colorMode(RGB);
+      //highlight buildings using random sized rectangle effect
       fill(pix);
-      let pointSize = 3;
-      rect(x, y, pointSize+random(sizeArray), pointSize+random(sizeArray)); //randomise size of rects (adding random number from sizeArray)
-      
+      let rectSize = 3; //initial size of 
+      rect(x, y, rectSize+random(sizeArray), rectSize+random(sizeArray)); //randomise size of rects (adding random number from sizeArray)
     } else {  
       //background paint stroke effect
         drawPill(x, y, pix); 
     }
   }
 
+
   function drawPill(x,y, pix) {
   
-    pix[3] =40; //change pix alpha value
+    pix[3] = 25; //change pix alpha value
     let col = color(pix);
-
-    colorMode(HSB);
-      let h = hue(col);
-      let s = saturation(col);
-      let b = brightness(col);
-
-      let new_sat = map(s, 0 , 255, 0, 0);
-      let new_col = color(100, new_sat, b)
 
     //following code based on effect from https://openprocessing.org/sketch/708075  
     //simplified and adjusted to fit my code, using perlin noise and sin/cos waves 
 
-    let angle = 70;
-    angle += noise(x/100, y/100) * PI;
-    fill(new_col);
-    pill(x,y, random(height/40, width/200), random(height/40, width/200), angle); 
+    let angle = 70; //sets initial angle
+    angle += noise(x/100, y/100) * PI; //add random variation to angle
+    fill(col); //fill with new alpha 
+    pill(x, y, random(height/40, width/200), random(height/40, width/200), angle); 
   }
 
+
   function pill(x,y, width, height, rotation) {
-    let size = width/6;
-    let precision = width/600;
+    let size = width/6; //setting size to 1/6th of given width
+    let precision = width/600; //controls smoothness of pill shape
     push();
-    translate(x,y);
-    rotate(rotation);
+    translate(x,y); //moves drawing origin to x,y
+    rotate(rotation); //rotates pill drawing by specified angle
     beginShape();
-    for(let i=0; i< TWO_PI; i+= precision){
+    //
+    for(let i=0; i< TWO_PI; i+= precision){ //loop goes through angles from 0 to full circle (two-pi) with tiny increments (precision)
+      //loop calculates X and Y coordinates of points on the pill using trig. Adjusts size based on angle. (if angle > pi, reduce size to create slight tapered end to pill)
       let s = size;
-      if(i>PI) s = size*0.7;
-      vertex(cos(i+PI)*s, sin(i+PI)*s + (i<PI ? - height/2 : height/2));
+      if(i>PI) { 
+        s = size*0.7;
+        vertex(cos(i+PI)*s, sin(i+PI)*s + height/2);
+      } else {
+        vertex(cos(i+PI)*s, sin(i+PI)*s - height/2);
+      }
        
     }
     endShape(CLOSE);
@@ -96,7 +91,7 @@ function draw () {
     console.log("Done!")
     noLoop();
     // uncomment this to save the result
-   // saveArtworkImage(outputFile);
+   saveArtworkImage(outputFile);
   }
 }
 
