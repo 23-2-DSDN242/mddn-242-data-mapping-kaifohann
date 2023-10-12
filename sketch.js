@@ -4,9 +4,9 @@ let renderCounter=0;
 let textureImg = null;
 
 // input/output file info
-let sourceFile = "input_new3.jpg";
-let maskFile   = "mask_new3.png";
-let outputFile = "output_6.png";
+let sourceFile = "input_new2.jpg";
+let maskFile   = "mask_new2.png";
+let outputFile = "output_5.png";
 
 function preload() {
   sourceImg = loadImage(sourceFile);
@@ -91,7 +91,7 @@ function draw() {
     console.log("Done!")
     noLoop();
     // uncomment this to save the result
-   saveArtworkImage(outputFile);
+   //saveArtworkImage(outputFile);
   }
 }
 
