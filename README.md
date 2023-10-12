@@ -1,6 +1,6 @@
 # MDDN 242 2023 Assignment 3: Data Mapping
 
-##AI Renaissance by Hannah Kai Fong
+## AI Renaissance by Hannah Kai Fong
 
 
 I decided early in this assignment to use pictures from the Italy trip I took this year. Compared to other photos I already had/could take, this seemed like the most visually rich option for me. 
@@ -16,7 +16,6 @@ To start this idea off, I wanted to find a way to simulate paint strokes. From m
 
 To distinguish the buildings, I tried a few options. I went through some tests of changing the hue and brightness however, this was jarring and didn't simulate the Renaissance paintings well. I came back to pointillism but changed the 'points' to rectangles. As I was playing with the size of these, it started to remind me of cracking paint.  I started looking into this a bit more. Having the rectangles all the same size looked too uniform and lacked interest. To fix this, I created an array of numbers and randomly added these numbers to the initialised rectangle height and width. Although this is quite a small change, I felt that it stopped the buildings from feeling so static. I visually enjoyed this effect and I thought it fit into my theme nicely (now leaning towards an aged renaissance painting rather than one that had been restored), so I decided to keep it. 
 
-
 From my brief look into art history, I knew that there tends to be a base colour used as an underpainting. To replicate this effect in my filter, I tested different background colours and their visibility on the 'canvas'. I initially looked at burnt umber/burnt sienna as these were common tones used for underpainting by artists such as Rembrandt and Caravaggio. This created an interesting effect but made the images too dark. I decided to lean into a more Michaelangelo/ Boticelli aesthetic, which is much lighter and has a light blue/cream glow to it. I settled on the eggshell-coloured background as I felt that it imitated this look quite nicely. The lighter look also echoed the aging effect I had started to run with. 
 To highlight this aspect of the filter, I decided to decrease the alpha of the paint-stroke effect to let the background seep through. I think this created a lot more unity within the images, which I'm really happy with. 
 I also played around with the number of elements being drawn in both the background and foreground. I settled on the final number as there were enough elements to define the buildings well, but still a few gaps to let the background colour shine through. 
@@ -26,7 +25,8 @@ I came back to the masking effect at the end of the assignment. I tested some mo
 Finally, after getting feedback that I could further separate the buildings from the background, I did more colour testing. I attempted to use the HSB colour mode and lower the background saturation to define the mask. This created an interesting effect but it didn't fit well with my Renaissance painting theme. I went back to playing with the alpha of the background. I decided that lowering this even more did create a better definition of the mask, which is what can be seen in my final outputs. 
 
 Overall, I'm quite happy with my final outputs. I think the code highlights the buildings in the images well while sticking with the aged Renaissance painting theme. 
-I think the softness of the background effect contrasts well with the bolder buildings without clashing too much. I would have liked to play with the colour idea more - perhaps manipulate the images into a specific colour palette however, I ran out of time to do so. 
+I think the softness of the background effect contrasts well with the bolder buildings without clashing too much. I could have done better at highlighting the details of the architecture, to lean more into the 'beauty' part of the theme and improve on the overall aesthetic. I would have also liked to play with the colours more - perhaps manipulate the images into a specific 'Renaissance' colour palette however, I ran out of time to do so. 
+
 As for the mask aspect of the assignment, I think my outputs do the job however, I should have paid more attention to the details - such as the inclusion of people, to refine my output. If I had more time, I would have also looked into creating a second mask for people within the image, and manipulating this (perhaps removing them from the images entirely to clean up the aesthetics). 
 
 
